@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MotionMaster: Generalizable Text-Driven Motion Generation and Editing.">
+  <meta name="keywords" content="MotionMaster, Motion Generation, Motion Editing, MLLM, Human Motion">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MotionMaster: Generalizable Text-Driven Motion Generation and Editing</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MotionMaster: Generalizable Text-Driven Motion Generation and Editing</h1>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Nan Jiang</a><sup>1,2,3,7,8,9*</sup>,</span>
+            <span class="author-block">
+              <a href="#">Yunhao Li</a><sup>3,6,7,8*</sup>,</span>
+            <span class="author-block">
+              <a href="#">Lexi Pang</a><sup>1,3,5,7,8*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Zimo He</a><sup>4,2,7,8,9</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Siyuan Huang</a><sup>2,7✉️</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Yixin Zhu</a><sup>3,1,7,8,9✉️</sup>
+            </span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="margin-top: 15px;">
+            <span class="author-block"><sup>1</sup>Institute for AI, Peking University &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>2</sup>Beijing Institute for General Artificial Intelligence (BIGAI) &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>3</sup>School of Psychological and Cognitive Sciences, Peking University<br></span>
+            <span class="author-block"><sup>4</sup>School of Computer Science, Peking University &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>5</sup>Yuanpei College, Peking University &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>6</sup>School of Foreign Languages, Peking University<br></span>
+            <span class="author-block"><sup>7</sup>State Key Lab of General AI &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>8</sup>Beijing Key Laboratory of Behavior and Mental Health, Peking University<br></span>
+            <span class="author-block"><sup>9</sup>Embodied Intelligence Lab, PKU-Wuhan Institute for Artificial Intelligence</span>
+          </div>
+          
+          <div class="is-size-6 publication-authors" style="margin-top: 15px;">
+            <span class="author-block"><sup>*</sup>Indicates Equal Contribution &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>✉️</sup>Indicates Corresponding Author</span>
+          </div>
+
+          <div class="is-size-4" style="margin-top: 15px; color: hsl(204, 86%, 53%); font-weight: 700;">
+            CVPR 2026
+          </div>
+
+          <div class="publication-links" style="margin-top: 20px;">
+            <span class="link-block">
+              <a href="#"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                </span>
+                <span>Paper (Coming Soon)</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/liyanhu666666/MotionMaster" target="_blank"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>
+            <span class="link-block">
+              <a href="#"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="far fa-images"></i>
+                </span>
+                <span>MotionGB Data (Coming Soon)</span>
+                </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light teaser">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <img id="teaser" src="./static/images/teaser.png" alt="Teaser" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+      <h2 class="subtitle has-text-left" style="margin-top: 15px;">
+        <span class="dnerf">MotionMaster</span> unlocks a high level of text-generalizable and long-horizon motion generation and editing 
+        unseen in previous methods. By natively grounding motion into the shared embedding space of a pretrained MLLM, <span class="dnerf">MotionMaster</span> inherits its 
+        profound action semantics and long-horizon reasoning capabilities. This leap is fueled by three core contributions: <span class="dnerf">MotionGB</span>, 
+        a massive 10,000-hour richly annotated dataset; a novel FSQ-based tokenizer that balances local joint accuracy with global trajectory coherence; and a unified finetuning 
+        paradigm with temporal-augmentation and semantic-balancing strategies to facilitate learning.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-3">Multi-Level Text-to-Motion Generation</h3>
+            <video controls muted loop playsinline style="width: 100%; display: block;">
+              <source src="./static/videos/compressed/compare_4levels.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-3">Long-Horizon Generation (2 Actions)</h3>
+            <video controls muted loop playsinline style="width: 100%; display: block;">
+              <source src="./static/videos/compressed/compare_concat2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-3">Long-Horizon Generation (3 Actions)</h3>
+            <video controls muted loop playsinline style="width: 100%; display: block;">
+              <source src="./static/videos/compressed/compare_concat3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-3">Long-Horizon Generation (5 Actions)</h3>
+            <video controls muted loop playsinline style="width: 100%; display: block;">
+              <source src="./static/videos/compressed/concat_5actions.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-centered">
+            <h3 class="title is-3">Multi-Level Text-Guided Motion Editing</h3>
+            <video controls muted loop playsinline style="width: 100%; display: block;">
+              <source src="./static/videos/compressed/compare_edit.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          Synthesizing realistic human motion from natural language holds transformative potential for animation, robotics, and virtual reality.
+          Recent methods handle single-action sequences and simple textual instructions, yet multi-action compositions and precise editing remain elusive due to limited data diversity, inadequate representations, and fragmented pipelines.
+          Critically, most existing methods train motion generation models from scratch, failing to exploit the rich action semantics and long-horizon reasoning already encoded in pretrained MLLMs.
+          Here we show that finetuning a pretrained MLLM with large-scale motion data yields strong zero-shot generalization across diverse text-guided motion generation and editing tasks.
+          We present <span class="dnerf">MotionMaster</span>, a unified framework built on three components: <span class="dnerf">MotionGB</span>, a 10,000-hour dataset expanded from 400 hours of verified motion capture via spatial-temporal augmentation; an FSQ-based tokenizer that preserves both local joint accuracy and global trajectory coherence; and a finetuned MLLM with motion and language tokens in a shared embedding space. <span class="dnerf">MotionMaster</span> outperforms prior methods by 41.6% in multi-action semantic consistency and 20.8% in body-part composition.
+          These results demonstrate that pretraining knowledge from MLLMs transfers effectively to motion understanding, opening a viable path toward general-purpose motion intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          
+          <img src="static/images/method.png" alt="Overview of MotionMaster Framework" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
+          
+          <p>
+            <strong>Overview of <span class="dnerf">MotionMaster</span>.</strong> (a) The FSQ-based motion tokenizer encodes 
+            joint positions into localized features, quantizes them into discrete tokens, and supervises reconstruction 
+            via a loss computed in global coordinates. (b) For text-to-motion generation, the finetuned MLLM 
+            autoregressively decodes motion tokens conditioned on a text prompt. (c) For text-guided editing, the 
+            original motion is provided as additional context, and the MLLM selectively modifies the relevant 
+            tokens while preserving the remainder of the sequence.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">MotionGB Dataset</h2>
+        <div class="content has-text-justified">
+          
+          <img src="static/images/dataset.png" alt="Overview of MotionGB Dataset" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
+          
+          <p>
+            <strong>Overview of <span class="dnerf">MotionMaster</span>.</strong> (a) The FSQ-based motion tokenizer encodes 
+            joint positions into localized features, quantizes them into discrete tokens, and supervises reconstruction 
+            via a loss computed in global coordinates. (b) For text-to-motion generation, the finetuned MLLM 
+            autoregressively decodes motion tokens conditioned on a text prompt. (c) For text-guided editing, the 
+            original motion is provided as additional context, and the MLLM selectively modifies the relevant 
+            tokens while preserving the remainder of the sequence.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="hero is-small is-light" id="BibTeX">
+  <div class="hero-body">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{jiang2026motionmaster,
+  title={MotionMaster: Generalizable Text-Driven Motion Generation and Editing},
+  author={Jiang, Nan and Li, Yunhao and Pang, Lexi and He, Zimo and Huang, Siyuan and Zhu, Yixin},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year={2026}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the template of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
